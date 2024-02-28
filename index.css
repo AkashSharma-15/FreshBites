@@ -19,7 +19,7 @@
     margin: 10px;
 }
 
-.res-container{
+.res-container {
     display: flex;
     flex-wrap: wrap;
 }
@@ -31,7 +31,7 @@
     margin: 5px;
 }
 
-.res-card:hover{
+.res-card:hover {
     border: 1px solid black;
     cursor: pointer;
 }
@@ -43,4 +43,9 @@
 .res-logo {
     width: 100%;
     height: 130px;
+}
+
+.filter-btn {
+    margin: 10px;
+    cursor: pointer;
 }
