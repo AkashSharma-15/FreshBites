@@ -6,6 +6,7 @@
 
 .logo {
     width: 120px;
+    
 }
 
 .nav-items>ul {
@@ -48,4 +49,26 @@
 .filter-btn {
     margin: 10px;
     cursor: pointer;
+}
+
+.shimmer-container {
+    display: flex;
+
+}
+
+.shimmer-card {
+    width: 200px;
+    height: 400px;
+    background-color: #f0f0f0;
+    margin: 20px;
+}
+
+.login-btn {
+    padding: 0 20px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.filter {
+    display: flex;
 }
