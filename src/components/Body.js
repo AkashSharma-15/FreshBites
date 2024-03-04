@@ -35,7 +35,7 @@ const Body = () => {
                         onChange={(e) => { setSearchText(e.target.value) }}
                     />
                     <button onClick={() => {
-                        console.log(searchText)
+                        
                         const filteredres = listOfRestaurants.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()))
                         setFilteredRestaurants(filteredres)
                     }}>

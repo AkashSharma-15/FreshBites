@@ -18,6 +18,7 @@ const RestaurantMenu = () => {
         const data = await fetch(MENU_API_URL + resid)
         const json = await data.json()
         setResInfo(json.data)
+        console.log("Restaurant menu")
         console.log(json)
     }
 
@@ -30,7 +31,7 @@ const RestaurantMenu = () => {
     const { name, cuisines, costForTwoMessage } = resInfo?.cards[0]?.card?.card?.info;
 
     // menu items
-    const { itemCards } = resInfo?.cards[   2]?.groupedCard?.cardGroupMap?.REGULAR.cards[1].card.card
+    const { itemCards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR.cards[1].card.card
 
 
 

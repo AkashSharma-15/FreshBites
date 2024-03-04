@@ -6,7 +6,7 @@
 
 .logo {
     width: 120px;
-    
+
 }
 
 .nav-items>ul {
@@ -71,4 +71,9 @@
 
 .filter {
     display: flex;
+}
+
+.user-card {
+    padding: 10px;
+    border: 1px solid black;
 }
