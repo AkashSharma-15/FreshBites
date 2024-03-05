@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import RestaurentCard from "./RestaurentCard"
 import Shimmer from "./Shimmer"
 import { Link } from "react-router-dom"
+import useOnlineStatus from "../utils/useOnlineStatus"
 const Body = () => {
 
     const [listOfRestaurants, setlistOfRestaurants] = useState([])
@@ -21,6 +22,11 @@ const Body = () => {
         fetchData()
     }, [])
 
+    const isOnline = useOnlineStatus()
+
+    if (isOnline === false) {
+        return (<h1>OOPS! looks like you are offline</h1>)
+    }
 
     return listOfRestaurants.length === 0 ? <Shimmer /> : (
         <div className="body">
@@ -35,7 +41,7 @@ const Body = () => {
                         onChange={(e) => { setSearchText(e.target.value) }}
                     />
                     <button onClick={() => {
-                        
+
                         const filteredres = listOfRestaurants.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()))
                         setFilteredRestaurants(filteredres)
                     }}>
