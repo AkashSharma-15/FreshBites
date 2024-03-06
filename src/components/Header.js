@@ -8,43 +8,45 @@ const Header = () => {
     const isOnline = useOnlineStatus()
 
     return (
-        <div className="header">
-            <div className="logo-container">
-                <img className="logo" src={LOGO_URL} alt="" />
+        <div className="flex justify-between shadow-lg mb-2 bg-pink-100 sm:bg-yellow-100 lg:bg-white">
+            <div className="logo-container flex items-center">
+                <img className="w-20 py-4  mx-2" src={LOGO_URL} alt="" />
+                <h1 className="text-orange-600 text-xl font-bold font-style: italic">FreshBites</h1>
             </div>
 
-            <div className="nav-items">
-                <ul>
-                    <li>
+
+            <div className="flex items-center ">
+                <ul className="flex p-4 m-4 ">
+                    <li className="px-4 text-xl font-bold text-orange-600">
                         Online Status {isOnline ? '✅' : '🔴'}
                     </li>
-                    <li >
+                    <li className="px-4 text-xl font-bold text-orange-600" >
                         <Link to='/'>
                             Home
                         </Link>
                     </li>
-                    <li >
+                    <li className="px-4 text-xl  font-bold text-orange-600" >
                         <Link to='/about'>
                             About
                         </Link>
                     </li>
-                    <li>
+                    <li className="px-4 text-xl  font-bold text-orange-600" >
                         <Link to='/contact'>
                             Contact Us
                         </Link>
                     </li>
-                    <li>
+                    <li className="px-4 text-xl  font-bold text-orange-600" >
                         <Link to='/grocery'>
                             Grocery
                         </Link>
                     </li>
-                    <li >
+                    <li className="px-4  text-xl  font-bold text-orange-600" >
                         <Link to='/contact'>
                             Cart
                         </Link>
                     </li>
 
-                    <button className="login-btn" onClick={() => {
+                    <button className="login-btn px-4 bg-red-200 rounded-lg" onClick={() => {
                         btnName === "login" ? setBtnName("logout") : setBtnName("login")
                     }}>
                         {btnName}</button>

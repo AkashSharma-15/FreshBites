@@ -7,18 +7,19 @@ const RestaurantMenu = () => {
     const { resid } = useParams()
 
     const resInfo = useRestaurantMenu(resid)
+    
 
     // Check if resInfo exists and has necessary properties
-    if (resInfo === null) {
+    if (!resInfo || !resInfo.cards || !resInfo.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card) {
         return <Shimmer />;
     }
-
     // destructuring API data
     const { name, cuisines, costForTwoMessage } = resInfo?.cards[0]?.card?.card?.info;
 
     // menu items
     const { itemCards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1].card?.card
-    
+    console.log("itemCards:", itemCards);
+
 
     return (
         <div className="menu">
@@ -28,10 +29,9 @@ const RestaurantMenu = () => {
 
             <h2>Menu</h2>
             <ul>
-                {itemCards.map((item) => (
+                {Array.isArray(itemCards) && itemCards.map((item) => (
                     <li key={item.card.info.id}>
-                        {item.card.info.name} -
-                        ₹{item.card.info.price / 100 || item.card.info.defaultPrice / 100}
+                        {item.card.info.name} - ₹{item.card.info.price / 100 || item.card.info.defaultPrice / 100}
                     </li>
                 ))}
             </ul>
