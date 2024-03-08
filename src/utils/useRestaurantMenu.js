@@ -6,14 +6,13 @@ const useRestaurantMenu = (resid) => {
 
     useEffect(() => {
         fetchData()
-    },[])
+    }, [])
 
     // fetchdata
     const fetchData = async () => {
         const data = await fetch(MENU_API_URL + resid)
         const json = await data.json()
         setResInfo(json.data)
-        console.log(json.data)
 
 
     }
@@ -21,3 +20,4 @@ const useRestaurantMenu = (resid) => {
 }
 
 export default useRestaurantMenu
+
