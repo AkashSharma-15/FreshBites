@@ -38,7 +38,7 @@ const Header = () => {
                         <Link to='/cart'>
                             Cart
                             {cartItems.length > 0 &&
-                                <span className="text-orange-900 ">[{cartItems.length}]</span>
+                                <span className="text-white bg-red-600 px-2  rounded-lg absolute top-8  ">{cartItems.length}</span>
                             }
                         </Link>
                     </li>

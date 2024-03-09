@@ -50,45 +50,40 @@ const ItemList = ({ items }) => {
 
                         {/* cart button working */}
                         <div className="w-3/12 p-4">
-                            <div className="absolute">
+                            <div className="absolute bg">
                                 {/* redux working through this  button initial ADD button */}
 
                                 {
                                     !isInCart(item.card.info.id) &&
-                                    <button className=" p-2 bg-white font-bold text-orange-600 rounded-lg shadow-lg  my-16  ml-8 border border-orange-500"
+                                    <button className=" p-2 bg-white font-bold text-orange-600 rounded-lg shadow-lg  my-16  ml-8 "
                                         onClick={() => handleAddCart(item)}
                                     >
                                         ADD
                                     </button>
                                 }
 
-                                {/* Plus button */}
+                                {/* Plus button Quantity value and minus button*/}
                                 {
                                     isInCart(item.card.info.id) &&
-                                    <button className=" p-2 bg-white font-bold text-orange-600 rounded-lg shadow-lg  my-16  ml-8 border border-orange-500"
-                                        onClick={() => handleAddCart(item)}
-                                    >
-                                        +
-                                    </button>
-                                }
+                                    <div className=" bg-white rounded-lg shadow-lg  my-16 mx-6">
+                                        <button className="p-2 bg-transparent text-orange-600 rounded-full focus:outline-none"
+                                            onClick={() => handleRemoveCart(item)}
+                                        >
+                                            -
+                                        </button>
 
-                                {/* number of items in cart */}
+                                        <span className="mx-2 text-xl font-bold text-orange-600">
+                                            {cartItems.find((cartItem) => cartItem.card.info.id === item.card.info.id)?.quantity || 0}
+                                        </span>
 
-                                {
-                                    isInCart(item.card.info.id) &&
-                                    <span className="mx-1 text-xl font-bold">
-                                        {cartItems.find((cartItem) => cartItem.card.info.id === item.card.info.id)?.quantity || 0}
-                                    </span>
-                                }
+                                        <button className="p-2 bg-transparent text-orange-600 rounded-full focus:outline-none"
+                                            onClick={() => handleAddCart(item)}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
 
-                                {/* remove item button */}
-                                {
-                                    isInCart(item.card.info.id) &&
-                                    <button className=" p-2 bg-white font-bold text-orange-600 rounded-lg shadow-lg   border border-orange-500 "
-                                        onClick={() => handleRemoveCart(item)}
-                                    >
-                                        -
-                                    </button>
+
                                 }
                             </div>
 
