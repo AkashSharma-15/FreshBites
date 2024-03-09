@@ -13,7 +13,12 @@ const Cart = () => {
     const calculateTotalPrice = () => {
         let totalPrice = 0;
         cartItems.map((item) => {
-            totalPrice += item.card.info.price * item.quantity;
+            if (item.card.info.price)
+                totalPrice += item.card.info.price * item.quantity;
+            else {
+                totalPrice += item.card.info.defaultPrice * item.quantity;
+
+            }
         });
         return totalPrice;
     };
