@@ -22,10 +22,17 @@ const ItemList = ({ items }) => {
     const handleRemoveCart = (item) => {
         dispatch(removeItem(item))
     }
+
+    // check whether cart empty or not
+    const isInCart = (itemId) => {
+        // some method will return true or false if any item exist
+        return cartItems.some((item) => item.card.info.id === itemId)
+    }
     return (
         <div>
             <div>
                 {/*  Menu Accordion Body */}
+
                 {items.map((item) => (
                     <div key={item.card.info.id} className="p-2 m-2 border-orange-200 border-b-2  
                     text-left flex justify-between">
@@ -40,13 +47,14 @@ const ItemList = ({ items }) => {
                             <p className="text-xs text-zinc-600">{item.card.info.description}</p>
                         </div>
 
-                        {/* image div */}
+
+                        {/* cart button working */}
                         <div className="w-3/12 p-4">
                             <div className="absolute">
-
                                 {/* redux working through this  button initial ADD button */}
+
                                 {
-                                    cartItems.length === 0 &&
+                                    !isInCart(item.card.info.id) &&
                                     <button className=" p-2 bg-white font-bold text-orange-600 rounded-lg shadow-lg  my-16  ml-8 border border-orange-500"
                                         onClick={() => handleAddCart(item)}
                                     >
@@ -56,7 +64,7 @@ const ItemList = ({ items }) => {
 
                                 {/* Plus button */}
                                 {
-                                    cartItems.length > 0 &&
+                                    isInCart(item.card.info.id) &&
                                     <button className=" p-2 bg-white font-bold text-orange-600 rounded-lg shadow-lg  my-16  ml-8 border border-orange-500"
                                         onClick={() => handleAddCart(item)}
                                     >
@@ -66,13 +74,16 @@ const ItemList = ({ items }) => {
 
                                 {/* number of items in cart */}
 
-                                <span className="mx-1 text-xl font-bold">
-                                    {cartItems.length > 0 && cartItems.length}
-                                </span>
+                                {
+                                    isInCart(item.card.info.id) &&
+                                    <span className="mx-1 text-xl font-bold">
+                                        {cartItems.find((cartItem) => cartItem.card.info.id === item.card.info.id)?.quantity || 0}
+                                    </span>
+                                }
 
                                 {/* remove item button */}
                                 {
-                                    cartItems.length > 0 &&
+                                    isInCart(item.card.info.id) &&
                                     <button className=" p-2 bg-white font-bold text-orange-600 rounded-lg shadow-lg   border border-orange-500 "
                                         onClick={() => handleRemoveCart(item)}
                                     >
@@ -81,7 +92,7 @@ const ItemList = ({ items }) => {
                                 }
                             </div>
 
-
+                            {/* image div */}
                             <img className="w-full h-20" src={CDN_URL + item.card.info.imageId} alt="" />
                         </div>
 

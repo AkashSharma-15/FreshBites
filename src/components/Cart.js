@@ -7,6 +7,17 @@ import { Link } from "react-router-dom"
 const Cart = () => {
 
     const cartItems = useSelector((store) => store.cart.items)
+    console.log(cartItems)
+    // Function to calculate total price
+
+    const calculateTotalPrice = () => {
+        let totalPrice = 0;
+        cartItems.map((item) => {
+            totalPrice += item.card.info.price * item.quantity;
+        });
+        return totalPrice;
+    };
+
 
     const dispath = useDispatch()
     const hanldeClear = () => {
@@ -14,7 +25,7 @@ const Cart = () => {
     }
 
     return (
-        <div className="text-center m-4  p-4 shadow-xl min-h-screen">
+        <div className="text-center m-4  p-4 shadow-xl min-h-screen ">
 
             <div className="flex justify-center">
                 <h1 className="text-2xl font-bold text-orange-600 mx-52">Cart</h1>
@@ -31,18 +42,33 @@ const Cart = () => {
                         Clear
                     </button>
                 }
-
             </div>
 
             {/* cart items */}
             <div className="w-6/12 m-auto">
                 <ItemList items={cartItems} />
             </div>
+
+            {/* total price  */}
+
             {
                 cartItems.length > 0 &&
-                <div>
+                <div className="">
+                    <span className="text-lg font-bold text-orange-600">Total Price : </span>
+                    <span className="text-lg font-bold">
+                        ₹{calculateTotalPrice() / 100}
+                    </span>
+                </div>
+
+            }
+
+            {/* place order button */}
+            {
+                cartItems.length > 0 &&
+                <div className="flex justify-around my-4">
+
                     <Link to="/order">
-                        <button className="px-4 p-2 rounded-lg font-bold text-white bg-orange-500">
+                        <button className="px-4 p-2 rounded-lg font-bold text-white  bg-orange-500" onClick={hanldeClear}>
                             Place Order
                         </button>
                     </Link>

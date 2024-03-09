@@ -2,7 +2,7 @@
 
 const PlaceOrder = () => {
     return (
-        <div className="my-2  flex flex-col items-center      ">
+        <div className="my-2  flex flex-col items-center min-h-screen">
             <h1 className=" text-orange-600 my-2 text-2xl font-bold">
                 ORDER PLACED SUCCESSFULLY !</h1>
 

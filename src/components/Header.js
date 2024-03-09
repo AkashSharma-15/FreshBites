@@ -9,7 +9,7 @@ const Header = () => {
 
     // useSelector hook for accessing redux store or subscribing the store
     const cartItems = useSelector((store) => store.cart.items)
-    console.log(cartItems)
+
 
 
     return (
