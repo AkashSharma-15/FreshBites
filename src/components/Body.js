@@ -17,7 +17,7 @@ const Body = () => {
 
     // setUserName from context
     const { loggedInUser, setUserName } = useContext(UserContext)
-    console.log(loggedInUser)
+
 
     // API CALL
     const fetchData = async () => {

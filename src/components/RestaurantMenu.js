@@ -1,8 +1,8 @@
-import { useState } from "react"
-import Shimmer from "./Shimmer"
+
 import { useParams } from "react-router-dom"
 import useRestaurantMenu from "../utils/useRestaurantMenu"
 import RestaurantCategory from "./RestaurantCategory"
+import ShimmerMenu from "./ShimmerMenu"
 
 
 const RestaurantMenu = () => {
@@ -12,20 +12,20 @@ const RestaurantMenu = () => {
     const resInfo = useRestaurantMenu(resid)
 
     // index for showing accordion lists
-    const [showIndex, setShowIndex] = useState(0)
+    // const [showIndex, setShowIndex] = useState(0)
 
     // Check if resInfo exists and has necessary properties
 
     if (!resInfo || !resInfo.cards || !resInfo.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card) {
-        return <Shimmer />;
+        return <ShimmerMenu />;
     }
     // destructuring API data
 
-    const { name, cuisines, costForTwoMessage } = resInfo?.cards[0]?.card?.card?.info;
+    const { name, cuisines, costForTwoMessage, avgRating } = resInfo?.cards[0]?.card?.card?.info;
 
     // menu items
 
-    const { itemCards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1].card?.card
+    // const { itemCards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1].card?.card
 
     // filtering categories
 
@@ -38,7 +38,8 @@ const RestaurantMenu = () => {
     return (
         <div className="text-center">
             <h1 className="font-bold text-xl my-6">{name}</h1>
-            <p className="text-lg font-bold">{cuisines.join(", ")} - {costForTwoMessage} </p>
+            <p className="text-lg font-bold">{cuisines.join(", ")} - {costForTwoMessage} - {avgRating}☆ </p>
+
 
             {/* categories accordion */}
             {
@@ -46,8 +47,8 @@ const RestaurantMenu = () => {
                     <RestaurantCategory
                         data={category?.card?.card}
                         key={category?.card?.card?.title}
-                        showItems={index === showIndex ? true : false}
-                        setShowIndex={() => setShowIndex(index)}
+                    //showItems={index === showIndex ? true : false}
+                    // setShowIndex={() => setShowIndex(index)}
                     />
                 )
             }

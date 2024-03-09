@@ -1,16 +1,18 @@
-
+import { useState } from "react"
 import ItemList from "./ItemList"
 
 // Accordion title component
-const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
+const RestaurantCategory = ({ data }) => {
+    const [showItems, setShowItems] = useState(false)
     const handleClick = () => {
-        setShowIndex()
+        setShowItems(!showItems)
+
     }
 
     return (
         <div>
             {/* Accordion header */}
-            <div className="w-6/12 bg-orange-100 shadow-lg p-4 mx-auto my-4 ">
+            <div className="w-6/12 bg-orange-50 shadow-lg p-4 mx-auto my-4 ">
 
                 <div className="flex justify-between cursor-pointer" onClick={handleClick}   >
 
@@ -18,7 +20,8 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
                         {data.title} [{data.itemCards.length}]
                     </span>
                     <span  >
-                        <h1 className="text-xl font-bold   ">⬇</h1>
+                        <h1 className="text-xl font-bold">v</h1>
+
                     </span>
 
                 </div>
@@ -26,6 +29,7 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
                 {
                     showItems && <ItemList items={data.itemCards} />
                 }
+
             </div>
 
 

@@ -1,21 +1,28 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./components/Header";
-import Body from "./components/Body";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
-// import About from "./components/About";
-import Contact from "./components/Contact";
+// components
+import Header from "./components/Header";
+import Body from "./components/Body";
 import ErrorPage from './components/ErrorPage'
 import RestaurantMenu from "./components/RestaurantMenu";
+
+// context
 import UserContext from "./utils/UserContext";
-// import Grocery from "./components/Grocery";
 
+// redux 
+import { Provider } from "react-redux";
+import appStore from "./utils/Redux/appStore";
+import Cart from "./components/Cart";
+import PlaceOrder from "./components/PlaceOrder";
+import Footer from "./components/Footer";
 
-const Grocery = lazy(() => import("./components/Grocery"))
+// about is a lazy loading comonent
 const About = lazy(() => import('./components/About'))
-// general App layout
 
+
+// general App layout
 const AppLayout = () => {
 
     const [userName, setUserName] = useState()
@@ -25,13 +32,17 @@ const AppLayout = () => {
         }
         setUserName(data.name)
     }, [])
+
     return (
-        <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-            <div className="bg-orange-50">
-                <Header />
-                <Outlet  />
-            </div>
-        </UserContext.Provider>
+        <Provider store={appStore}>
+            <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+                <div className="">
+                    <Header />
+                    <Outlet />
+                    <Footer />
+                </div>
+            </UserContext.Provider>
+        </Provider>
     )
 }
 
@@ -50,17 +61,16 @@ const appRouter = createBrowserRouter([
                     <About /></Suspense>
             },
             {
-                path: "/contact",
-                element: <Contact />
-            },
-            {
-                path: "/grocery",
-                element: <Suspense fallback={<h1>Loading.....</h1>}>
-                    <Grocery /></Suspense>
+                path: "/cart",
+                element: <Cart />
             },
             {
                 path: "/restaurants/:resid",
                 element: <RestaurantMenu />
+            },
+            {
+                path: "order",
+                element: <PlaceOrder />
             }
         ],
         errorElement: <ErrorPage />
