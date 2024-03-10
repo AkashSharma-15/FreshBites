@@ -21,7 +21,10 @@ const RestaurantMenu = () => {
     }
     // destructuring API data
 
-    const { name, cuisines, costForTwoMessage, avgRating } = resInfo?.cards[0]?.card?.card?.info;
+    const { name, cuisines, avgRating, totalRatingsString, areaName, aggregatedDiscountInfo, costForTwoMessage, veg } = resInfo?.cards[0]?.card?.card?.info;
+    console.log(resInfo?.cards[0]?.card?.card?.info)
+
+
 
     // menu items
 
@@ -35,15 +38,30 @@ const RestaurantMenu = () => {
 
     // console.log('categories', categories)
 
-    return (
-        <div className="text-center">
-            <h1 className="font-bold text-xl my-6">{name}</h1>
-            <p className="text-lg font-bold">{cuisines.join(", ")} - {costForTwoMessage} - {avgRating}☆ </p>
+    returred
+        // above content of restaurent menu
+        <div className=" my-8  ">
+            <div className="w-full flex justify-center">
+                <div className="w-6/12 restaurant-info my-8">
+                    <h1 className="font-bold text-xl text-center">{name}  <span className="text-sm">{veg ? "🟢" : "🔴"}</span> </h1>
+                    <p className="text-center text-sm text-zinc-600">{avgRating}★ {totalRatingsString}</p>
+                    <p className="text-center text-sm text-zinc-600">{cuisines.join(", ")}</p>
+                    <p className="text-center text-sm text-zinc-600">{areaName}</p>
+                    <p className="my-2 text-zinc-600">
+                        ---------------------------------------------------------------------------------------------------------
+                    </p>
+                    <p className="text-center text-zinc-600 text-xl font-bold">{costForTwoMessage}</p>
+                    <div className="flex justify-center my-4">
+                        <p className="border-2 p-4 rounded-lg text-zinc-600 mr-4 cursor-pointer">{aggregatedDiscountInfo.descriptionList[0].meta}</p>
+                        <p className="border-2 p-4 rounded-lg text-zinc-600 cursor-pointer">{aggregatedDiscountInfo.descriptionList[1].meta}</p>
+                    </div>
+                </div>
+            </div>
 
 
             {/* categories accordion */}
             {
-                categories.map((category, index) =>
+                categories.map((category) =>
                     <RestaurantCategory
                         data={category?.card?.card}
                         key={category?.card?.card?.title}

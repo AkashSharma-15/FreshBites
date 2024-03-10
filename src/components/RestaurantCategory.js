@@ -12,7 +12,7 @@ const RestaurantCategory = ({ data }) => {
     return (
         <div>
             {/* Accordion header */}
-            <div className="w-6/12 bg-orange-50 shadow-lg p-4 mx-auto my-4 ">
+            <div className="w-6/12 shadow-lg p-4 mx-auto my-4 ">
 
                 <div className="flex justify-between cursor-pointer" onClick={handleClick}   >
 

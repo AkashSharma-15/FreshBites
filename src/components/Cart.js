@@ -38,11 +38,11 @@ const Cart = () => {
                 {/* Add items and clear button  */}
                 {cartItems.length === 0 ?
                     <Link to='/'
-                        className="mx-8 p-2 rounded-lg font-bold text-white bg-orange-500 ">
+                        className="mx-8 p-2 rounded-lg font-bold text-orange-600 bg-white hover:border-2 hover: border-orange-600 ">
                         Add Items
                     </Link>
                     :
-                    <button className=" px-4 p-2 rounded-lg font-bold text-white bg-orange-500"
+                    <button className="  p-2 rounded-lg font-bold text-orange-600  hover:border-2 hover: border-orange-600"
                         onClick={hanldeClear} >
                         Clear
                     </button>
@@ -73,7 +73,7 @@ const Cart = () => {
                 <div className="flex justify-around my-4">
 
                     <Link to="/order">
-                        <button className="px-4 p-2 rounded-lg font-bold text-white  bg-orange-500" onClick={hanldeClear}>
+                        <button className="px-4 p-2 rounded-lg font-bold  hover:border-2 hover: border-orange-600 text-orange-600" onClick={hanldeClear}>
                             Place Order
                         </button>
                     </Link>

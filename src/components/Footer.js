@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div className='bg-gray-900 text-white'>
+        <div className='bg-gray-900 text-white '
+        // style={{ backgroundImage: "url('https://www.shutterstock.com/image-vector/orange-diagonal-gradient-lines-footer-260nw-2408156149.jpg')" }}
+        >
             <footer className="flex justify-between py-10 px-6 lg:px-10 shadow-xl font-bold items-center">
                 <div className='ml-6'>
                     <h1 className="text-xl md:text-2xl">Connecting people with the joy of food</h1>
