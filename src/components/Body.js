@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react"
 import RestaurentCard from "./RestaurentCard"
 import Shimmer from "./Shimmer"
-import { Link } from "react-router-dom"
+import { Link, json } from "react-router-dom"
 import useOnlineStatus from "../utils/useOnlineStatus"
-import UserContext from "../utils/UserContext"
+import { CDN_URL } from "../utils/constants"
 const Body = () => {
 
     // Actual list
@@ -15,10 +15,12 @@ const Body = () => {
     // search input
     const [searchText, setSearchText] = useState("")
 
-    // setUserName from context
-    const { loggedInUser, setUserName } = useContext(UserContext)
+    // for upper heading 
+    const [heading, setHeading] = useState("")
 
-
+    // for upper images
+    const [image, setImage] = useState(null)
+    
     // API CALL
     const fetchData = async () => {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
@@ -26,8 +28,11 @@ const Body = () => {
         const json = await data.json()
         setlistOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
         setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        // console.log("Body rendered", json?.data?.cards[0]?.card?.card?.header?.title)
+        // console.log("Body rendered", CDN_URL + json?.data?.cards[0]?.card?.card?.imageGridCards?.info[0].imageId)
+        setImage(json?.data?.cards[0]?.card?.card?.imageGridCards?.info)
+        setHeading(json?.data?.cards[0]?.card?.card?.header?.title)
     }
-    // console.log("Body rendered", listOfRestaurants)
 
     useEffect(() => {
         fetchData()
@@ -41,6 +46,23 @@ const Body = () => {
 
     return listOfRestaurants.length === 0 ? <Shimmer /> : (
         <div className="body mx-20 ">
+
+            {/* images and whats on your mind */}
+            <div className="my-8">
+                <h1 className="text-xl font-bold text-orange-600">Hey, {heading}</h1>
+
+                {/* .image div */}
+                <div className="flex mt-2 flex-wrap">
+                    {
+                        image.map((img) =>
+                            <img className="w-24" key={img.id}
+                                src={CDN_URL + img.imageId}></img>)
+                    }
+                </div>
+            </div>
+
+
+            {/* lower section below images from search and all */}
 
             <div className="filter flex">
 

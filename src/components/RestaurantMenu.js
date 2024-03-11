@@ -21,8 +21,10 @@ const RestaurantMenu = () => {
     }
     // destructuring API data
 
-    const { name, cuisines, avgRating, totalRatingsString, areaName, aggregatedDiscountInfo, costForTwoMessage, veg } = resInfo?.cards[0]?.card?.card?.info;
+    const { name, cuisines, avgRating, totalRatingsString, areaName,
+        aggregatedDiscountInfo, costForTwoMessage, veg, availability } = resInfo?.cards[0]?.card?.card?.info;
     console.log(resInfo?.cards[0]?.card?.card?.info)
+
 
 
 
@@ -38,13 +40,18 @@ const RestaurantMenu = () => {
 
     // console.log('categories', categories)
 
-    returred
+    return (
         // above content of restaurent menu
         <div className=" my-8  ">
             <div className="w-full flex justify-center">
                 <div className="w-6/12 restaurant-info my-8">
-                    <h1 className="font-bold text-xl text-center">{name}  <span className="text-sm">{veg ? "🟢" : "🔴"}</span> </h1>
-                    <p className="text-center text-sm text-zinc-600">{avgRating}★ {totalRatingsString}</p>
+                    <div className="font-bold text-xl text-center">
+                        {name}
+                        <span className="mx-2">{veg ? "🟢" : "🅾️"}</span>
+               
+                        </div>
+
+                    <p className="text-center text-sm text-zinc-600 mt-1">{avgRating}★ {totalRatingsString}</p>
                     <p className="text-center text-sm text-zinc-600">{cuisines.join(", ")}</p>
                     <p className="text-center text-sm text-zinc-600">{areaName}</p>
                     <p className="my-2 text-zinc-600">
