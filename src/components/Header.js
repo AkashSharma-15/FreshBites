@@ -44,19 +44,20 @@ const Header = () => {
                     </li>
 
                     <li className="px-10">
-                        <button className=" border-2 border-orange-500 px-4 text-orange-600 rounded-lg font-bold hover:bg-orange-600 hover:text-white "
-                            onClick={() => {
-                                btnName === "login" ? setBtnName("logout") : setBtnName("login")
-                            }}>
-                            {btnName}
-                        </button>
+                        <Link to="/login">
+                            <button className=" px-2 text-xl text-orange-600 rounded-lg font-bold  ">
+                                login
+                            </button>
+                        </Link>
+
+                        <Link to="/signup">
+                            <button className=" px-2 text-xl text-orange-600 rounded-lg font-bold  ">
+                                SignUp
+                            </button>
+                        </Link>
                     </li>
 
-                    {/* <li className="px-4  text-xl  font-bold text-orange-600" >
-                        <Link to='/contact'>
-                            {data.loggedInUser}
-                        </Link>
-                    </li> */}
+
                 </ul>
             </div>
 

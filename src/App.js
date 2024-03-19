@@ -17,6 +17,8 @@ import appStore from "./utils/Redux/appStore";
 import Cart from "./components/Cart";
 import PlaceOrder from "./components/PlaceOrder";
 import Footer from "./components/Footer";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 
 // about is a lazy loading comonent
 const About = lazy(() => import('./components/About'))
@@ -69,8 +71,16 @@ const appRouter = createBrowserRouter([
                 element: <RestaurantMenu />
             },
             {
-                path: "order",
+                path: "/order",
                 element: <PlaceOrder />
+            },
+            {
+                path: "/login",
+                element: <Login />
+            },
+            {
+                path: "/signup",
+                element: <SignUp />
             }
         ],
         errorElement: <ErrorPage />

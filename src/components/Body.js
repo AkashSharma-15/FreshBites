@@ -20,7 +20,7 @@ const Body = () => {
 
     // for upper images
     const [image, setImage] = useState(null)
-    
+
     // API CALL
     const fetchData = async () => {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
@@ -71,12 +71,12 @@ const Body = () => {
 
                     {/* search input */}
                     <input
-                        type="text" className="border border-solid border-orange-400 hover:border-orange-600 rounded-lg p-1 "
+                        type="text" className="border-2 border-orange-600 mr-4  text-orange-600 bg-white rounded-md p-1 px-4 "
                         value={searchText}
                         onChange={(e) => { setSearchText(e.target.value) }}
                     />
                     {/* serach button */}
-                    <button className="px-4 py-2 bg-orange-200 m-4 rounded-xl fond-bold hover:border border-orange-500"
+                    <button className="px-5 py-2 m-4  text-white border rounded-xl bg-orange-600 fond-bold "
                         onClick={() => {
 
                             const filteredres = listOfRestaurants.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()))
@@ -87,10 +87,10 @@ const Body = () => {
 
 
                 {/* top reated div */}
-                <div className="topRated  p-4 flex items-center">
+                <div className="topRated  flex items-center">
                     {/* top rated rest button */}
                     <button
-                        className="filter-btn px-2 py-2  bg-orange-200 rounded-xl fond-bold hover:border border-orange-500"
+                        className="filter-btn px-3 py-2 text-white   bg-orange-600 rounded-xl fond-bold hover:border border-orange-500"
                         onClick={() => {
                             let filteredList = listOfRestaurants.filter((res) => res.info.avgRating > 4.2)
                             setlistOfRestaurants(filteredList)
